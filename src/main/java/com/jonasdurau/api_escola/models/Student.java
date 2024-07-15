@@ -41,7 +41,7 @@ public class Student implements Serializable {
     }
 
     public Student(String name, String cpf, String rg, String phone1, String phone2, String email, LocalDate birthdate,
-            String street, String neighborhood, String city, String state, String country, String password, Course course) {
+            String street, String neighborhood, String city, String state, String country, String password /*, Course course */) {
         this.name = name;
         this.cpf = cpf;
         this.rg = rg;
@@ -55,7 +55,7 @@ public class Student implements Serializable {
         this.state = state;
         this.country = country;
         this.password = password;
-        this.course = course;
+        //this.course = course;
     }
 
     public static long getSerialversionuid() {
