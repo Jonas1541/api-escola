@@ -2,11 +2,14 @@ package com.jonasdurau.api_escola.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,6 +33,9 @@ public class Teacher implements Serializable {
     private String state;
     private String country;
     private String password;
+
+    @ManyToMany(mappedBy = "teachers")
+    private List<Course> courses = new ArrayList<>();
 
     public Teacher() {
     }
@@ -165,6 +171,20 @@ public class Teacher implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void addCourse(Course course) {
+        courses.add(course);
+        course.getTeachers().add(this);
+    }
+
+    public void removeCourse(Course course) {
+        courses.remove(course);
+        course.getTeachers().remove(this);
     }
 
     @Override
